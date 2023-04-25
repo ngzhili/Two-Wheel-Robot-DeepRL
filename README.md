@@ -3,6 +3,8 @@
 The objective of this project is to train a Two-Wheel Robot (TWR) to balance and move to a destination while clearing a slope using Deep Reinforcement Learning. 
 This project was done by: Ng Zhili, Foo Jia Yuan, Natasha Soon
 
+![slope_demo](https://user-images.githubusercontent.com/69728128/234353570-e9368a8a-5388-4a23-b4ae-fe567f65436a.gif)
+
 ## Setup & Installation of Repository
 The code is written using Python 3.8 and used the following libraries:
 ```
