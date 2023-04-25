@@ -1,7 +1,7 @@
 # Learning to Balance a Two-Wheel Robot (TWR) using Deep Reinforcement Learning
 
-The objective of this project is to train a Two-Wheel Robot (TWR) to balance and move to a destination using Deep Reinforcement Learning. 
-
+The objective of this project is to train a Two-Wheel Robot (TWR) to balance and move to a destination while clearing a slope using Deep Reinforcement Learning. 
+This project was done by: Ng Zhili, Foo Jia Yuan, Natasha Soon
 ## Setup & Installation of Repository
 The code is written using Python 3.8 and used the following libraries:
 ```
@@ -148,7 +148,7 @@ python robot_train.py --config-file ./config/main.yaml
 python robot_test.py --config-file ./results/train/hyperparam_DQN_slope_40m/epsilon_decay_type_linear/hyperparam_DQN_slope_40m.yaml
 ```
 
-## Runing Hyperparameter Tuning
+## Running Hyperparameter Tuning
 1. To run hyperparameter tuning, edit the hyperparameters in the configuration file
 
 For example in main.yaml:
