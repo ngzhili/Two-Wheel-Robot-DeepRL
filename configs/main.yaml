@@ -3,7 +3,7 @@
 
 # ======= RUN ======= #
 run: 
-  name: SAC_robot_weight_5kg_force #Reinforce_robot_weight_5kg_force25 #SAC_robot_weight_5kg_force25 #SAC_distance_30m_rerun #hyperparam_DQN_learning_rate_slope_40m #SAC_slope_40m #models_distance_30m #SAC_testtest #hyperparam_reinforce_learning_rate #models_distance_40m_slope #models_time_400steps #hyperparam_models_time_400_steps #hyperparam_models_distance_30m # hyperparam_models_distance_30m 
+  name: SAC_robot_weight_5kg_force 
 
 # ======= MODEL ======= #
 model:
@@ -51,8 +51,8 @@ environment:
   render_mode: 'DIRECT' # DIRECT, GUI
   video_mode: False # for recording video in direct mode
   enable_keyboard: False
-  environment_type: 'SLOPE' #'FLAT' #'SLOPE' #'SLOPE' #'FLAT' #'FLAT' #'FLAT' # 'SLOPE', 'FLAT'
-  goal_type: 'distance' #'time' #'distance' #'time' #'time' #'distance' #'distance'  #'time' 
+  environment_type: 'SLOPE' #'FLAT' #'SLOPE' 
+  goal_type: 'distance' #'time' #'distance'
   x_distance_to_goal: 40
   goal_step: 400 # 20 seconds
   time_step_size: 1/20 # user time step size, controls frequency of action made by the robot
@@ -67,7 +67,6 @@ plotting:
 
 # ======= HYPERPARAMETER TUNING ======= #
 hyperparameter_tuning:
-  type: model #epsilon_greedy #model #'environment'
-  tuning_variable: learning_rate_actor #name #learning_rate_actor #name #epsilon_decay_type #name #'x_distance_to_goal' 
-  value_list: [1.0e-1, 1.0e-2, 1.0e-3, 1.0e-4, 1.0e-5, 1.0e-6] #['SAC'] #['DQN','DQNMA','Reinforce','A2C', 'MAA2C'] #['SAC'] #['DQN','DQNMA','Reinforce','A2C', 'MAA2C','SAC'] #['A2C', 'MAA2C'] #['SAC'] #['MAA2C'] #['SAC'] # ['DQN'] #['SAC'] #['Reinforce'] #['SAC'] #['SAC','Reinforce','A2C_SingleAction', 'MAA2C'] 
- # [1.0e-1, 1.0e-2, 1.0e-3, 1.0e-4, 1.0e-5]
+  type: model
+  tuning_variable: learning_rate_actor
+  value_list: [1.0e-1, 1.0e-2, 1.0e-3, 1.0e-4, 1.0e-5, 1.0e-6] 
