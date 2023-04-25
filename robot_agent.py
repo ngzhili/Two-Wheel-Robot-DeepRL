@@ -247,6 +247,7 @@ class Agent:
     
     
     def save_models(self,path=''):
+        """ Save models """
 
         print("Saving model weights")
         self.checkpoint_path_global=path+f"/{self.model}_"
@@ -271,7 +272,7 @@ class Agent:
 
 
     def load_models(self,path=''):
-
+        """ Loading models """
         print("Loading model weights")
         self.checkpoint_path_global=path+f"/{self.model}_"
 

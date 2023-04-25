@@ -22,7 +22,6 @@ def record_direct_mode(p,step,img_dir='./images'):
 
 
 def record_gui_mode(p,step,img_dir='./images'):
-    # img = p.getCameraImage(224, 224, renderer=p.ER_BULLET_HARDWARE_OPENGL)
     # Compute the camera view matrix
     info = p.getDebugVisualizerCamera()
     # print(info)
@@ -38,7 +37,6 @@ def record_gui_mode(p,step,img_dir='./images'):
         lightDirection=[1, 1, 1],
         renderer=p.ER_BULLET_HARDWARE_OPENGL
     )
-    # print(img)
     # Save the image
     cv2.imwrite(os.path.join(img_dir,str(step) + ".png"), cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
 

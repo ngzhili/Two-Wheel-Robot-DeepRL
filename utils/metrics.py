@@ -22,12 +22,6 @@ class TotalTrainingMetrics():
 
     def displacement(self,init_pos, curr_pos):
         return (curr_pos[0]-init_pos[0]) # Returns only the displacement in x-axis
-        # return euclidean_distance(init_pos,curr_pos)
-    
-    # def deviation(self,init_pos,curr_pos):
-    #     theoretically gets the deviation from x=0 line
-    #     return ()
-
 
     def start_episode(self,step,init_pos):
         self.init_pos = init_pos
@@ -60,8 +54,6 @@ class TotalTrainingMetrics():
                                          min(self.Vx),
                                          max(self.Vx)))
         self.metrics['loss'].append(loss)
-        
-
         return 
 
     def end_training(self):
@@ -88,20 +80,12 @@ class TotalTrainingMetrics():
         plt.figure()
         eps = []
         rwds_subset = []
-        # for i in range(self.episode_count):
-        #     # if i/100 == 0 and i > 0:
-        #     eps.append(i)
-        #     rwds_subset.append(np.mean(rwds[:i]))
-        
         rolling_window_interval = int(self.episode_count * 0.1) #100
         x = self.episode_list[::rolling_window_interval]
 
         rwds = self.metrics['total_transient_reward']
         y = [np.mean(rwds[:m]) for m in range(self.episode_count)][::rolling_window_interval]
         plt.plot(x, y)
-        # plt.plot(eps, rwds_subset)
-        # plt.plot([i for i in range(self.episode_count)],
-        #           [m[0] for m in self.metrics])
         plt.xlabel('Episodes')
         plt.ylabel('Rolling transient average reward')
         plt.title(f"Rolling average transient reward Over {self.episode_count} Episodes")
@@ -281,128 +265,6 @@ class TotalTrainingMetrics():
             print(f"The average reward is {self.avg_steps}")
         else:
             return super().__getattribute__(__name)
-
-
-# class metrics():
-#     def __init__(self,init_pos) -> None:
-        
-#         self.init_pos=init_pos
-#         self.cumulative_reward = 0.0
-#         self.num_steps = 0
-#         self.total_episode_reward_list = []
-    
-#     def update(self, episode_transient_reward, episode_reward, episode_steps):
-#         self.cumulative_reward += episode_transient_reward
-#         self.num_steps += episode_steps
-#         self.total_episode_reward_list.append(episode_reward)
-
-#     def displacement(self,curr_pos):
-#         self.euclidean_distance = euclidean_distance(self.init_pos,curr_pos)
-#         return self.euclidean_distance
-    
-#     def get_metrics(self):
-#         return {'cumulative_reward': self.cumulative_reward, 'num_steps': self.num_steps}
-
-#     def get_final_metrics(self):
-#         self.to_return=(self.cumulative_reward,
-#                         self.num_steps,
-#                         self.euclidean_distance)
-        
-#         return self.to_return
-    
-# class TotalTrainingMetrics():
-#     def __init__(self):
-#         self.metrics = []
-        
-#     def start_episode(self,step,init_pos):
-#         self.episode_metrics=metrics(init_pos)
-
-#         return
-
-#     def end_episode(self,ep_transient_reward, ep_reward, end_step, end_pos):
-#         self.episode_metrics.update(ep_transient_reward, ep_reward, end_step)
-#         self.episode_metrics.displacement(end_pos)
-#         self.metrics.append(self.episode_metrics.get_final_metrics())
-
-#         del self.episode_metrics
-
-#         return 
-
-#     def end_training(self):
-        
-#         self.episode_count=len(self.metrics)
-#         self.avg_reward=sum([m[0] for m in self.metrics]) / len(self.metrics)
-#         self.avg_steps = sum([m[1] for m in self.metrics]) / len(self.metrics)
-#         self.avg_disp=sum(m[2]for m in self.metrics)/ len(self.metrics)
-#         return 
-
-#     def plot_reward(self,path=""):
-#         plt.figure()
-#         plt.plot([i for i in range(self.episode_count)],
-#                   [m[0] for m in self.metrics])
-#         plt.xlabel('Episodes')
-#         plt.ylabel('Reward')
-#         plt.title(f"Reward Over {self.episode_count} Episodes")
-#         plt.savefig(os.path.join(path,f'reward_over_episode_{self.episode_count}.png'))
-
-#     def plot_rolling_avg_reward(self,path=""):
-#         plt.figure()
-#         rwds = [m[0] for m in self.metrics]
-#         eps = []
-#         rwds_subset = []
-#         # for i in range(self.episode_count):
-#         #     # if i/100 == 0 and i > 0:
-#         #     eps.append(i)
-#         #     rwds_subset.append(np.mean(rwds[:i]))
-#         plt.plot([i for i in range(self.episode_count)][::100], [np.mean(rwds[:m]) for m in range(self.episode_count)][::100])
-#         # plt.plot(eps, rwds_subset)
-#         # plt.plot([i for i in range(self.episode_count)],
-#         #           [m[0] for m in self.metrics])
-#         plt.xlabel('Episodes')
-#         plt.ylabel('Rolling average reward')
-#         plt.title(f"Rolling average reward Over {self.episode_count} Episodes")
-#         plt.savefig(os.path.join(path,f'rolling_avg_reward_over_episode_{self.episode_count}.png'))
-                    
-#     def plot_step(self,path=""):
-#         plt.figure()
-#         plt.plot([i for i in range(self.episode_count)],
-#                   [m[1] for m in self.metrics])
-#         plt.xlabel('Episodes')
-#         plt.ylabel('Timesteps')
-#         plt.title(f"Timesteps Over {self.episode_count} Episodes")
-#         plt.savefig(os.path.join(path,f'timestep_over_episode_{self.episode_count}.png'))
-#         return
-#     def plot_disp(self,path=""):
-#         plt.figure()
-#         plt.plot([i for i in range(self.episode_count)],
-#                   [m[2] for m in self.metrics])
-#         plt.xlabel('Episodes')
-#         plt.ylabel('Displacement')
-#         plt.title(f"Reward Over {self.episode_count} Episodes")
-#         plt.savefig(os.path.join(path,f'displacment_over_episode_{self.episode_count}.png'))
-#         return
-    
-#     def plot_all(self,path=""):
-#         self.plot_reward(path)
-#         self.plot_step(path)
-#         self.plot_disp(path)
-
-#         self.plot_goal_percentage_reached()
-#         self.plot_rolling_avg_reward(path)
-#         return
-
-#     def __getattribute__(self, __name: str):
-#         if __name=="size":
-#             return (len(self.metrics))
-#         elif __name=="reward":
-#             self.avg_reward=sum([m['cumulative_reward'] for m in self.metrics]) / len(self.metrics)
-#             print(f"The average reward is {self.avg_reward}")
-#         elif __name=="steps":
-#             self.avg_steps = sum([m['num_steps'] for m in self.metrics]) / len(self.metrics)
-#             print(f"The average reward is {self.avg_steps}")
-#         else:
-#             return super().__getattribute__(__name)
-
 
 # Create an instance of the TotalTrainingMetrics class
 total_metrics = TotalTrainingMetrics()

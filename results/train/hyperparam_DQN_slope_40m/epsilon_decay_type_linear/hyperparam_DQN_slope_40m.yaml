@@ -38,7 +38,7 @@ model:
   - 0
   - 0
   gamma: 0.99
-  h_units:
+  hidden_layer_size:
   - 512
   - 256
   - 128

@@ -518,15 +518,13 @@ class TwoWheelRobot:
         p.setJointMotorControl2(bodyUniqueId=self.robotid, 
                                 jointIndex=0, 
                                 controlMode=p.VELOCITY_CONTROL, 
-                                targetVelocity=-self.target_velocity_left_wheel,
-                                # force = self.force
+                                targetVelocity=-self.target_velocity_left_wheel
                                 )
         # apply new target velocity to right wheel joint
         p.setJointMotorControl2(bodyUniqueId=self.robotid, 
                                 jointIndex=1, 
                                 controlMode=p.VELOCITY_CONTROL, 
-                                targetVelocity=self.target_velocity_right_wheel,
-                                # force = self.force
+                                targetVelocity=self.target_velocity_right_wheel
                                 )
 
     def get_action_space(self):
@@ -569,7 +567,7 @@ class TwoWheelRobot:
         """
         temp_reward = 0
         if not end_episode:
-            max_x_distance = self.goal_line_x - 0 # hardcorded 0 for starting position, change this later
+            max_x_distance = self.goal_line_x - 0 # hardcorded 0 for starting position
             current_x = self.robot_base_position[0]
             prev_x = self.prev_robot_base_position[0]
             current_x_distance = self.goal_line_x - current_x # current distance to goal
@@ -581,15 +579,13 @@ class TwoWheelRobot:
                 # closer the agent to goal, positive transient reward is larger. 
                 # we normalize this transient reward based on the max_x_distance to the goal line
                 temp_reward = self.distance_to_goal_penalty * (1 - (current_x_distance/(max_x_distance+ abs(self.min_x_bound))))
-                # temp_reward = 0.01
 
-            # if current state's distance remains the same or is further away to goal comapred to previous state, penalize agent
+            # if current state's distance remains the same or is further away to goal comapred to previous state, do not penalize agent
             else:
                 # increasing linear transient reward gradient moving away from goal line. 
                 # further the agent to goal, negative transient reward is larger. 
                 # we normalize this transient reward based on the max_x_distance to the goal line
                 # temp_reward = -self.distance_to_goal_penalty * current_x_distance/max_x_distance
-                # temp_reward = -0.01
                 pass
 
         return temp_reward

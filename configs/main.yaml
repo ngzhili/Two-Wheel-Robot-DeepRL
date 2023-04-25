@@ -7,7 +7,7 @@ run:
 
 # ======= MODEL ======= #
 model:
-  name: SAC #SAC #Reinforce #DQN 
+  name: SAC #SAC #Reinforce #DQN #MAA2C #A2C
   learning_rate_actor: 1.0e-4
   learning_rate_critic: 1.0e-4
   batch_size: 1 # num of steps before update
@@ -22,7 +22,7 @@ epsilon_greedy:
   eps_init: 0.95
   eps_end: 0.05
   eps_decay: 1.0e-4
-  epsilon_decay_type: 'linear' #'exponential' # 'stretched' #linear, exponential, stretched
+  epsilon_decay_type: 'linear' #linear, exponential, stretched
   stretched_A: 0.5
   stretched_B: 0.1
   stretched_C: 0.1
@@ -51,7 +51,7 @@ environment:
   render_mode: 'DIRECT' # DIRECT, GUI
   video_mode: False # for recording video in direct mode
   enable_keyboard: False
-  environment_type: 'SLOPE' #'FLAT' #'SLOPE' 
+  environment_type: 'SLOPE' #'FLAT' #'SLOPE'
   goal_type: 'distance' #'time' #'distance'
   x_distance_to_goal: 40
   goal_step: 400 # 20 seconds
@@ -67,6 +67,6 @@ plotting:
 
 # ======= HYPERPARAMETER TUNING ======= #
 hyperparameter_tuning:
-  type: model
-  tuning_variable: learning_rate_actor
+  type: model #epsilon_greedy #model #'environment'
+  tuning_variable: learning_rate_actor #name #learning_rate_actor #epsilon_decay_type #'x_distance_to_goal' 
   value_list: [1.0e-1, 1.0e-2, 1.0e-3, 1.0e-4, 1.0e-5, 1.0e-6] 

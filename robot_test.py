@@ -3,6 +3,7 @@ import argparse
 from robot_move import MoveRobot
 
 if __name__ == "__main__":
+    """ Code for testing trained TWR agent """
 
     parser = argparse.ArgumentParser('robot Test', add_help=False)
 

@@ -1,13 +1,8 @@
 
 import math
-# self.epsilon = self.epsilon_end + (self.epsilon_initial - self.epsilon_end) * math.exp(-1. * episode / self.EPS_DECAY)
 import numpy as np
 
-# self.epsilon = self.epsilon_initial
 def exponential_decay_epsilon(episode, num_train_episodes, epsilon_initial, epsilon_end):
-    # decay_factor = (self.epsilon_end/self.epsilon_initial)**(1/self.num_train_episodes)
-    # epsilon = self.epsilon * (decay_factor ** episode)
-    # epsilon = (1/(episode+1)) * (self.epsilon_initial - self.epsilon_end) + self.epsilon_end
     epsilon = (1 - (episode/num_train_episodes) ** 2) * (epsilon_initial - epsilon_end) + epsilon_end
     return epsilon
 
@@ -70,9 +65,6 @@ class epsilon_function():
         return float(epsilon)
     
     def exponential_decay_epsilon(self,episode):
-        # decay_factor = (self.epsilon_end/self.epsilon_initial)**(1/self.num_train_episodes)
-        # epsilon = self.epsilon * (decay_factor ** episode)
-        # epsilon = (1/(episode+1)) * (self.epsilon_initial - self.epsilon_end) + self.epsilon_end
         epsilon = (1 - (episode/self.num_episodes) ** 2) * (self.epsilon_initial - self.epsilon_end) + self.epsilon_end
         return float(epsilon)
 

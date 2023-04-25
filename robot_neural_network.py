@@ -290,10 +290,8 @@ class SAC(object):
         self.update_interval = update_interval
 
         self.device = device
-        # self.hidden_layer_size = hidden_layer_size
-        self.hidden_layer_size = 128 #192
-        # self.learning_rate = learning_rate
-        self.learning_rate = 0.0003
+        self.hidden_layer_size = hidden_layer_size
+        self.learning_rate = learning_rate
         action_space = 1
 
         self.critic = QNetwork(num_inputs = num_inputs, num_actions = action_space, hidden_layer_size = self.hidden_layer_size).to(device=self.device)
@@ -373,40 +371,9 @@ class SAC(object):
             update(self.critic_target, self.critic, self.tau)
 
         return policy_loss.detach()
-    
-    def save_checkpoint(self, env_name, suffix="", checkpoint_path=None):
-        if not os.path.exists('checkpoints/'):
-            os.makedirs('checkpoints/')
-        if checkpoint_path is None:
-            checkpoint_path = "checkpoints/sac_checkpoint_{}_{}".format(env_name, suffix)
-        print('Saving models to {}'.format(checkpoint_path))
-        torch.save({'policy_state_dict': self.policy.state_dict(),
-                    'critic_state_dict': self.critic.state_dict(),
-                    'critic_target_state_dict': self.critic_target.state_dict(),
-                    'critic_optimizer_state_dict': self.critic_optim.state_dict(),
-                    'policy_optimizer_state_dict': self.policy_optim.state_dict()}, checkpoint_path)
-
-    def load_checkpoint(self, checkpoint_path, evaluate=False):
-        print('Loading models from {}'.format(checkpoint_path))
-        if checkpoint_path is not None:
-            checkpoint = torch.load(checkpoint_path)
-            self.policy.load_state_dict(checkpoint['policy_state_dict'])
-            self.critic.load_state_dict(checkpoint['critic_state_dict'])
-            self.critic_target.load_state_dict(checkpoint['critic_target_state_dict'])
-            self.critic_optim.load_state_dict(checkpoint['critic_optimizer_state_dict'])
-            self.policy_optim.load_state_dict(checkpoint['policy_optimizer_state_dict'])
-
-            if evaluate:
-                self.policy.eval()
-                self.critic.eval()
-                self.critic_target.eval()
-            else:
-                self.policy.train()
-                self.critic.train()
-                self.critic_target.train()
 
 
-""" =========== Actor Critic & REINFORCE =========== """
+""" =========== Actor Critic (A2C) & REINFORCE =========== """
 class FullyConnectedLayersBlock(tf.keras.layers.Layer):
     """
     Constructor Class for the custom layers in a fully connected NN
