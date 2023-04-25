@@ -1,4 +1,4 @@
-Learning to Balance a Two-Wheel Robot (TWR) using Deep Reinforcement Learning
+# Learning to Balance a Two-Wheel Robot (TWR) using Deep Reinforcement Learning
 
 The objective of this project is to train a Two-Wheel Robot (TWR) to balance and move to a destination using Deep Reinforcement Learning. 
 
