@@ -1,4 +1,4 @@
-# Balancing, moving, and traversing slopes with a Two-Wheel Robot using Deep Reinforcement Learning
+# Balancing, Moving, and Traversing Slopes with a Two-Wheel Robot using Deep Reinforcement Learning
 
 The objective of this project is to train a Two-Wheel Robot (TWR) to balance and move to a destination while clearing a slope using Deep Reinforcement Learning. 
 This project was done by: Ng Zhili, Foo Jia Yuan, Natasha Soon
