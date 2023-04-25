@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<robot name="TwoWheelRobot">
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1"/>
+  </material>
+
+  <link name="body">
+    <visual>
+      <geometry>
+        <box size="0.2 0.07 0.4"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0.0 0.3"/>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.2 0.07 0.4"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0.0 0.3"/>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <origin rpy="0 0 0" xyz="0 0.0 0.3"/>
+    </inertial>
+  </link>
+
+  <link name="left_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.06" radius="0.1" />
+      </geometry>
+      <origin rpy="0 1.5707963 0" xyz="0 0 0"/>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.06" radius="0.1" />
+      </geometry>
+      <origin rpy="0 1.5707963 0" xyz="0 0 0"/>
+      <contact_coefficients mu="1.0" />
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </inertial>
+  </link>
+
+  <link name="right_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.06" radius="0.1" />
+      </geometry>
+      <origin rpy="0 1.5707963 0" xyz="0 0 0"/>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.06" radius="0.1" />
+      </geometry>
+      <origin rpy="0 1.5707963 0" xyz="0 0 0"/>
+      <contact_coefficients mu="1.0" />
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </inertial>
+  </link>
+
+  <joint name="body_left_wheel" type="continuous">
+    <parent link="body"/>
+    <child link="left_wheel"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.0"/>
+    <origin rpy="0 0 0" xyz="-0.15 0.0 0.1"/>
+  </joint>
+
+  <joint name="body_right_wheel" type="continuous">
+    <parent link="body"/>
+    <child link="right_wheel"/>
+    <axis xyz="1 0 0"/>
+   <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.0"/>
+   <origin rpy="0 0 0" xyz="0.15 0.0 0.1"/>
+  </joint>
+
+</robot>

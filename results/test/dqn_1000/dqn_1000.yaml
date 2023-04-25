@@ -1,0 +1,48 @@
+config_path: results/train/dqn_1000/dqn_1000.yaml
+environment:
+  control_steer_only: true
+  distance_to_goal_penalty: 0.7
+  enable_keyboard: false
+  environment_type: FLAT
+  initial_rear_wheel_target_velocity: 7.85
+  render_mode: GUI
+  roll_penalty: 0.5
+  steering_multiplier: 0.05
+  target_velocity_change: 0.5
+  time_penalty: 0.3
+  time_step_size: 1/20
+  velocity_multiplier: 0.5
+  video_mode: false
+  x_distance_to_goal: 30
+  yaw_penalty: 0.3
+gpu_id: '0'
+load_model_weights_path: ./results/test\dqn_1000\best_model.pt
+mode: test
+model:
+  SPIDER_TYPE: false
+  gamma: 0.99
+  learning_rate_actor: 1.0e-06
+  learning_rate_critic: 0.001
+  name: DQN2
+plotting:
+  plot_trajectories_episode_interval: 100
+  record_trajectory_time_step_interval: 5
+run:
+  name: dqn_1000
+testing:
+  base_results_dir: ./results/test
+  device: auto
+  max_steps_per_episode: 1000
+  num_test_episodes: 1000
+  num_workers: 40
+  record_video: true
+training:
+  base_results_dir: ./results/train
+  batch: 5
+  device: auto
+  epsilon_decay_type: exponential
+  max_steps_per_episode: 2000
+  n_step: false
+  num_train_episodes: 3000
+  num_workers: 40
+  save_model_weights: true

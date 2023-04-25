@@ -1,0 +1,68 @@
+config_path: configs/main.yaml
+environment:
+  distance_to_goal_penalty: 0.7
+  enable_keyboard: false
+  environment_type: FLAT
+  goal_step: 400
+  goal_type: distance
+  render_mode: DIRECT
+  target_velocity_change: 0.5
+  time_penalty: 0.2
+  time_step_size: 1/20
+  video_mode: false
+  x_distance_to_goal: 30
+epsilon_greedy:
+  eps_decay: 0.0001
+  eps_end: 0.05
+  eps_init: 0.95
+  epsilon_decay_type: exponential
+  stretched_A: 0.5
+  stretched_B: 0.1
+  stretched_C: 0.1
+gpu_id: '0'
+hyperparameter_tuning:
+  tuning_variable: name
+  type: model
+  value_list:
+  - DQN
+load_model_weights_path: ./results/train/SAC_distance_30_128hidden/best_model.pt
+mode: train
+model:
+  batch_size: 1
+  dropout_rate:
+  - 0
+  - 0
+  - 0
+  gamma: 0.99
+  hidden_layer_size:
+  - 128
+  - 128
+  - 128
+  learning_rate_actor: 0.0001
+  learning_rate_critic: 0.0001
+  name: SAC
+  tau: 0.005
+  weight_decay:
+  - 0
+  - 0
+  - 0
+plotting:
+  plot_trajectories_episode_interval: 500
+  record_trajectory_time_step_interval: 10
+run:
+  name: SAC_distance_30_128hidden
+testing:
+  base_results_dir: ./results/test/
+  device: auto
+  max_steps_per_episode: 50000
+  num_test_episodes: 1000
+  num_workers: 40
+  record_video: true
+training:
+  base_results_dir: ./results/train/
+  device: cpu
+  max_steps_per_episode: 50000
+  n_step: false
+  num_train_episodes: 6000
+  num_workers: 40
+  save_model_weights: true
