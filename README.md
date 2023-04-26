@@ -24,7 +24,11 @@ torch==1.7.1
 ``` 
 conda create -n two_wheel_robot python=3.8 
 ```
-2. Install Dependencies
+2. Activate conda environment
+``` 
+conda activate two_wheel_robot
+```
+3. Install Dependencies
 ``` 
 pip install -r requirements.txt 
 ```
