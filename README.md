@@ -1,7 +1,6 @@
 # Balancing, Moving, and Traversing Slopes with a Two-Wheel Robot using Deep Reinforcement Learning
 
 The objective of this project is to train a Two-Wheel Robot (TWR) to balance, move and traverse slopes to reach a destination using Deep Reinforcement Learning in PyBullet physics engine. In this project, we have implemented State-Of-The-Art (SOTA) Deep Reinforcement Learning Algorithms (Deep Q-Network, Soft-Actor Critic, Actor Advantage Critic etc) to accomplish these tasks.
-Project Report can be found [here](https://drive.google.com/file/d/1H8NA9CpchFa2E4XIwNDL3Hk-ycZIH1lS/view?usp=sharing).
 
 This project was done by: [Ng Zhili](https://github.com/ngzhili), [Foo Jia Yuan](https://github.com/epsilonfunction), [Natasha Soon](https://github.com/natashasoon).
 
@@ -177,4 +176,6 @@ python robot_train_hyperparameter_tuning.py --config-file ./config/main.yaml
 https://user-images.githubusercontent.com/69728128/233765311-ea57ea41-e370-46c6-8069-491c71ef3d8d.mp4
 
 
+## Citation
 
+If you find our work useful for your research, please consider citing our work.
